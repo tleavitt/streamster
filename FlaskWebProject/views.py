@@ -24,13 +24,13 @@ def connect_db():
     return connection
 
 
-g.db = connect_db()
+# g.db = connect_db()
 
-@app.before_request
-def before_request():
-    db = getattr(g, 'db', None)
-    if db is None:
-        g.db = connect_db()
+# @app.before_request
+# def before_request():
+#     db = getattr(g, 'db', None)
+#     if db is None:
+#         g.db = connect_db()
 
 @app.teardown_request
 def teardown_request(exception):
