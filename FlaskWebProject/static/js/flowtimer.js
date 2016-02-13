@@ -17,11 +17,13 @@ var countDown;
     }).on("ready", function() {
       document.getElementById("time-spent").innerHTML = "To watch the whole video you'd need " + api.video.duration * 0.1 + " bitcoins";
       document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime * 0.1 + " bitcoins on this video";
-      startingTime = getStartTime("starting", totalTime);
+      if (api.playing == true)
+        startingTime = getStartTime("starting", totalTime);
     }).on("pause", function() {
       endTime = getEndTime("Resumed", startingTime);
     }).on("resume", function() {
-      startingTime = getStartTime("resumed", totalTime);
+      if (api.playing == true)
+        startingTime = getStartTime("resumed", totalTime);
     }).on("finished", function() {
       endTime = getEndTime("Finished", startingTime);
     });
@@ -40,9 +42,9 @@ function getStartTime(displayStr, totalTime) {
   var time = new Date().getTime() / 1000;
   console.info(displayStr, time);
   countDown = window.setInterval(function(){
-    console.log("Another 5 seconds passed");
-    totalTime += 5;
+    console.log("Another second passed");
+    totalTime += 1;
     document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime * 0.1 + " bitcoins on this video";
-  }, 5000);
+  }, 1000);
   return time;
 }
