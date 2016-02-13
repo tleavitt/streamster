@@ -16,27 +16,25 @@ import pypyodbc
 DATABASE = '/tmp/streamster.db'
 
 def connect_db():
-    # connection = pypyodbc.connect('Driver={SQL Server};',
-                                # 'Server=streamster.database.windows.net;',
-                                # 'Database=streamster;',
-                                # 'uid=sa;pwd=Password1') 
     connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=streamster.database.windows.net;UID=sa;PWD=Password1;DATABASE=streamster")
     return connection
 
 
 # g.db = connect_db()
 
-# @app.before_request
-# def before_request():
-#     db = getattr(g, 'db', None)
-#     if db is None:
-#         g.db = connect_db()
+@app.before_request
+def before_request():
+    db = getattr(g, 'db', None)
+    if db is None:
+        g.db = connect_db()
+        #g.db = 'foo'
 
 @app.teardown_request
 def teardown_request(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
+        #x = True
 
 @app.route('/single_video.html')
 def view_video():
