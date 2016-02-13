@@ -10,12 +10,31 @@ from FlaskWebProject import app
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
+import pypyodbc
 
 # configuration
 DATABASE = '/tmp/streamster.db'
 
 def connect_db():
-    return sqlite3.connect(app.config['DATABASE'])
+    # connection = pypyodbc.connect('Driver={SQL Server};',
+                                # 'Server=streamster.database.windows.net;',
+                                # 'Database=streamster;',
+                                # 'uid=sa;pwd=Password1') 
+    connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=streamster.database.windows.net;UID=sa;PWD=Password1;DATABASE=streamster")
+    return connection
+
+
+connection = connect_db()
+
+@app.before_request
+def before_request():
+    if (not connection):
+        connection = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    if (connection):
+        connection.close()
 
 @app.route('/single_video.html')
 def view_video():
@@ -28,9 +47,14 @@ def view_video():
 @app.route('/')
 @app.route('/home')
 def home():
+    if (connection):
+        got_connection = "yay it worked"
+    else:
+        got_connection = "no it failed"
     """Renders the home page."""
     return render_template(
         'index.html',
         title='Home Page',
-        year=datetime.now().year,
+        year=datetime.now().year, 
+        got_connection=got_connection
     )
