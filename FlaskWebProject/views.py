@@ -10,18 +10,18 @@ from FlaskWebProject import app
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
-import pypyodbc
+# import pypyodbc
 
 # configuration
 DATABASE = '/tmp/streamster.db'
 
-def connect_db():
-    # connection = pypyodbc.connect('Driver={SQL Server};',
-                                # 'Server=streamster.database.windows.net;',
-                                # 'Database=streamster;',
-                                # 'uid=sa;pwd=Password1') 
-    connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=streamster.database.windows.net;UID=sa;PWD=Password1;DATABASE=streamster")
-    return connection
+# def connect_db():
+#     # connection = pypyodbc.connect('Driver={SQL Server};',
+#                                 # 'Server=streamster.database.windows.net;',
+#                                 # 'Database=streamster;',
+#                                 # 'uid=sa;pwd=Password1') 
+#     connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=streamster.database.windows.net;UID=sa;PWD=Password1;DATABASE=streamster")
+#     return connection
 
 
 # g.db = connect_db()
