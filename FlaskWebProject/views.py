@@ -24,17 +24,19 @@ def connect_db():
     return connection
 
 
-connection = connect_db()
+g.db = connect_db()
 
 @app.before_request
 def before_request():
-    if (not connection):
-        connection = connect_db()
+    db = getattr(g, 'db', None)
+    if db is None:
+        g.db = connect_db()
 
 @app.teardown_request
 def teardown_request(exception):
-    if (connection):
-        connection.close()
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
 
 @app.route('/single_video.html')
 def view_video():
@@ -47,7 +49,8 @@ def view_video():
 @app.route('/')
 @app.route('/home')
 def home():
-    if (connection):
+    db = getattr(g, 'db', None)
+    if db is not None:
         got_connection = "yay it worked"
     else:
         got_connection = "no it failed"
