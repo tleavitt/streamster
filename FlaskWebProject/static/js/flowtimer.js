@@ -33,5 +33,6 @@
        console.info("time played this time", endTime - startingTime);
        totalTime = totalTime + endTime - startingTime;
        console.info("Total time played: ", totalTime);
+       console.info("you suck");
     });
  });
