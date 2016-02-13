@@ -7,6 +7,7 @@
 
 var totalTime = 0;
 var countDown;
+var COST_PER_SECOND = 0.01;
 
  // bind listeners to all players on the page
  flowplayer(function(api, root) {
@@ -15,8 +16,8 @@ var countDown;
     api.on("load", function() {
       console.info("Your video is loading ...", api.engine.engineName);
     }).on("ready", function() {
-      document.getElementById("time-spent").innerHTML = "To watch the whole video you'd need " + api.video.duration * 0.1 + " bitcoins";
-      document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime * 0.1 + " bitcoins on this video";
+      document.getElementById("time-spent").innerHTML = "To watch the whole video you'd need " + api.video.duration * COST_PER_SECOND + " bitcoins";
+      document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime *  + " bitcoins on this video";
       if (api.playing == true)
         startingTime = getStartTime("starting", totalTime);
     }).on("pause", function() {
@@ -44,7 +45,7 @@ function getStartTime(displayStr, totalTime) {
   countDown = window.setInterval(function(){
     console.log("Another second passed");
     totalTime += 1;
-    document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime * 0.1 + " bitcoins on this video";
+    document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime * COST_PER_SECOND + " bitcoins on this video";
   }, 1000);
   return time;
 }
