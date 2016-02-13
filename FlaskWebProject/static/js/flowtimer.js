@@ -34,4 +34,8 @@
        totalTime = totalTime + endTime - startingTime;
        console.info("Total time played: ", totalTime);
     });
+<<<<<<< HEAD
  });
+=======
+ });
+>>>>>>> origin/master
