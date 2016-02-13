@@ -17,7 +17,7 @@ var COST_PER_SECOND = 0.01;
       console.info("Your video is loading ...", api.engine.engineName);
     }).on("ready", function() {
       document.getElementById("time-spent").innerHTML = "To watch the whole video you'd need " + api.video.duration * COST_PER_SECOND + " bitcoins";
-      document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime *  + " bitcoins on this video";
+      document.getElementById("current-time-spent").innerHTML = "You have spent " + totalTime * COST_PER_SECOND + " bitcoins on this video";
       if (api.playing == true)
         startingTime = getStartTime("starting", totalTime);
     }).on("pause", function() {
