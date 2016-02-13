@@ -16,48 +16,12 @@
 
    <!-- include flowplayer -->
    <script src="../static/js/flowplayer.min.js"></script>
+   <script src="../static/js/flowtimer.js"></script>
 
 
 
-   <script>
-   flowplayer.conf = {
-     ratio: 5/12,
-     // rtmp: "rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
-     splash: true,
-     analytics: "UA-73749016-1"
-   };
 
-   // bind listeners to all players on the page
-   flowplayer(function(api, root) {
-      var totalTime = 0;
-      var endTime = 0;
-      var startingTime;
-         // when a new video is about to be loaded
-      api.on("load", function() {
-         console.info("load", api.engine.engineName);
-         // when a video is loaded and ready to play
-      }).on("ready", function() {
-         console.info("ready", api.video.duration)
-         startingTime = new Date().getTime() / 1000;
-         console.info("starting", startingTime)
-      }).on("pause", function() {
-         var endTime = new Date().getTime() / 1000;
-         console.info("end", endTime)
-         console.info(endTime - startingTime);
-         totalTime = totalTime + endTime - startingTime;
-         console.info("Total time played: ", totalTime);
-      }).on("resume", function() {
-         startingTime = new Date().getTime() / 1000;
-         console.info("resumed", startingTime)
-      }).on("finished", function() {
-         endTime = new Date().getTime() / 1000;
-         console.info("finished", startingTime)
-         console.info("time played this time", endTime - startingTime);
-         totalTime = totalTime + endTime - startingTime;
-         console.info("Total time played: ", totalTime);
-      });
-   });
-   </script>
+   
 
 </head>
 
@@ -66,7 +30,7 @@
    <!-- the player -->
    <div class="flowplayer" data-analytics="UA-73749016-1" title="Stressed out" data-swf="../static/js/flowplayer.swf" data-ratio="0.4167">
       <video>
-         <source type="video/mp4" src="http://streamster.huyenchip.com/videos/jellofight.mp4">
+         <source type="video/mp4" src="http://streamster.huyenchip.com/videos/stressedout.mp4">
       </video>
    </div>
 

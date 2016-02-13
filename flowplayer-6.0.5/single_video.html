@@ -40,6 +40,9 @@
          console.info("ready", api.video.duration)
          startingTime = new Date().getTime() / 1000;
          console.info("starting", startingTime)
+         window.setInterval(function(){
+           console.log("Another second passed");
+         }, 1000);
       }).on("pause", function() {
          var endTime = new Date().getTime() / 1000;
          console.info("end", endTime)
@@ -66,8 +69,7 @@
    <!-- the player -->
    <div class="flowplayer" data-analytics="UA-73749016-1" title="Stressed out" data-swf="flowplayer.swf" data-ratio="0.4167">
       <video>
-         <!-- <source type="video/mp4" src="videos/jellofight.mp4"> -->
-         <source type="video/mp4" src="videos/stressedout.mp4">
+         <source type="video/mp4" src="http://streamster.huyenchip.com/videos/jellofight.mp4">
       </video>
    </div>
 
