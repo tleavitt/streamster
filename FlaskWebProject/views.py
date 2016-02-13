@@ -26,15 +26,15 @@ def connect_db():
 def before_request():
     db = getattr(g, 'db', None)
     if db is None:
-        g.db = connect_db()
-        #g.db = 'foo'
+        # g.db = connect_db()
+        g.db = 'foo'
 
 @app.teardown_request
 def teardown_request(exception):
     db = getattr(g, 'db', None)
     if db is not None:
-        db.close()
-        #x = True
+        # db.close()
+        x = True
 
 @app.route('/single_video.html')
 def view_video():
