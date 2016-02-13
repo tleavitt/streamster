@@ -1,6 +1,8 @@
 <!doctype html>
 
 <head>
+   <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../static/bootstrap/css/custom.css">
 
    <!-- player skin -->
    <link rel="stylesheet" href="../static/bootstrap/css/fp/functional.css">
@@ -8,7 +10,7 @@
    <!-- site specific styling -->
    <style>
    body { font: 12px "Myriad Pro", "Lucida Grande", sans-serif; text-align: center; padding-top: 5%; }
-   .flowplayer { width: 80%; }
+   .flowplayer { width: 80%; margin-top: 13vh;}
    </style>
 
    <!-- for video tag based installs flowplayer depends on jQuery 1.7.2+ -->
@@ -26,6 +28,29 @@
 </head>
 
 <body>
+   <!-- navbar -->
+   <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="home_button" href="./home">
+               HOME
+            </a>
+         </div>
+         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+               <li><a href="./browse">BROWSE</a></li>
+               <li><a href="./about">ABOUT</a></li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+   <!-- End of navbar -->
 
    <!-- the player -->
    <div class="flowplayer" data-analytics="UA-73749016-1" title="Stressed out" data-swf="../static/js/flowplayer.swf" data-ratio="0.4167">
