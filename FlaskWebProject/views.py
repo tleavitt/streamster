@@ -24,7 +24,7 @@ def connect_db():
     return connection
 
 
-g.db = connect_db()
+# g.db = connect_db()
 
 @app.before_request
 def before_request():
