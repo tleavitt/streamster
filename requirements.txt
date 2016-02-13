@@ -1,3 +1,4 @@
 Flask==0.10.1
 pysqlite==2.8.1
+pypyodbc
 
