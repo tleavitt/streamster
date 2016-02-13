@@ -49,11 +49,12 @@ def view_video():
 @app.route('/')
 @app.route('/home')
 def home():
-    db = getattr(g, 'db', None)
-    if db is not None:
-        got_connection = "yay it worked"
-    else:
-        got_connection = "no it failed"
+    got_connection = "no it failed"
+    if g is not None:
+        db = getattr(g, 'db', None)
+        if db is not None:
+            got_connection = "yay it worked"
+
     """Renders the home page."""
     return render_template(
         'index.html',
