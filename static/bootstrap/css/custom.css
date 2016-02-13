@@ -28,11 +28,13 @@
   background-image: url("../../img/play-splash.jpg");
   background-size: cover;
   width: 100vw;
-  left: -2.4vh; 
-  height: 87.2vh;
+  left: 0vh; 
+  height: 87vh;
   position: relative;
   color: black;
+  letter-spacing: 1.5px;
   font-family: oswald;
+  position: fixed;
 }
 
 
@@ -44,7 +46,6 @@
     padding-top: 0;
     padding-right: 30px;
     color: white;
-    
 }
 
 
