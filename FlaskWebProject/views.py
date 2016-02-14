@@ -65,11 +65,11 @@ import pypyodbc
 def test_db():
     connection = pypyodbc.connect("Driver={SQL Server};Server=tcp:streamster.database.windows.net,1433;Uid=streamster@streamster;Pwd=Password1;Database=streamster")
     cursor = connection.cursor()
-    SQLCommand = ("INSERT INTO videos "
-        "(id, timespent) "
-        "VALUES (?, ?)")
-    Values = [3, 1234]
-    cursror.execute(SQLCommand, Values)
+    SQLCommand = 'INSERT INTO videos VALUES (234, 2345)'
+    Values = [1234]
+    cursror.execute(SQLCommand)
+    # SQLCommand = 'SELECT * FROM videos'
+    # cursor.execute(SQLCommand)
     connection.commit()
     connection.close()
     return render_template(
