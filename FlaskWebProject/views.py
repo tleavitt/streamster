@@ -1,6 +1,6 @@
-"""
-Routes and views for the flask application.
-"""
+# """
+# Routes and views for the flask application.
+# """
 
 from datetime import datetime
 from flask import render_template
@@ -16,11 +16,11 @@ import pypyodbc
 DATABASE = '/tmp/streamster.db'
 
 def connect_db():
-    connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=tcp:streamster.database.windows.net,1433;UID=streamster@streamster;PWD=Password1;DATABASE=streamster")
+    # connection = pypyodbc.connect("Driver={SQL Server};Server=tcp:streamster.database.windows.net,1433;Uid=streamster@streamster;Pwd=Password1;Database=streamster")
     return connection
 
 
-g.db = connect_db()
+# g.db = connect_db()
 
 @app.before_request
 def before_request():
@@ -44,6 +44,10 @@ def view_video():
         year=datetime.now().year,
 	)
 
+@app.route('/videos')
+def view_videos():
+    return render_template("browse.html")
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -60,3 +64,22 @@ def home():
         year=datetime.now().year, 
         got_connection=got_connection
     )
+
+
+# @app.route('/')
+# def test_db():
+#     connection = pypyodbc.connect("Driver={SQL Server};Server=tcp:streamster.database.windows.net,1433;Uid=streamster@streamster;Pwd=Password1;Database=streamster")
+#     cursor = connection.cursor()
+#     # SQLCommand = 'INSERT INTO videos (id, timespent) VALUES (234, 2345)'
+#     # Values = [1234]
+#     # cursror.execute(SQLCommand)
+#     SQLCommand = 'SELECT * FROM videos'
+#     cursor.execute(SQLCommand)
+#     results = cursor.fetchone()
+#     connection.close()
+#     return render_template(
+#         'index.html',
+#         title='Home Page',
+#         year=datetime.now().year, 
+#     )
+
