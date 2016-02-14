@@ -30,7 +30,7 @@ flowplayer(function(api, root) {
   thisView.transaction(function(current) {
     return current+1;
   });
-  document.getElementById("views-info").innerHTML = "This video has been viewed " + dbRef[key]["views"] + " times";
+  // document.getElementById("views-info").innerHTML = "This video has been viewed " + dbRef[key]["views"] + " times";
   var endTime = 0;
   var startingTime;
   api.on("load", function() {
