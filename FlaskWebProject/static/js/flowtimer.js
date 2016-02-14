@@ -1,5 +1,7 @@
 
-var myVar = loadScript("https://cdn.firebase.com/js/client/2.2.1/firebase.js", updateDB);
+var firstVar = loadScript("./urlparam.js", function() {
+  var myVar = loadScript("https://cdn.firebase.com/js/client/2.2.1/firebase.js", updateDB);
+})
 
 function loadScript(url, updateDB) {
     // Adding the script tag to the head as suggested before
@@ -34,7 +36,7 @@ function updateDB() {
   flowplayer(function(api, root) {
     var videoName = document.getElementsByClassName("flowplayer")[0].getAttribute("title");
     
-    
+    var key = $.urlParam('key');
     var firstrun = true;
     var child = {type: "video", name:videoName, views:1};
     // dbRef.push(child);
