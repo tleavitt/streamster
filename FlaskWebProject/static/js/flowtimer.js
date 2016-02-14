@@ -16,15 +16,15 @@ function loadScript(url, updateDB) {
     head.appendChild(script);
 }
 
-function urlParam(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
-    }
-    else{
-       return results[1] || 0;
-    }
-}
+// function urlParam(name){
+//     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+//     if (results==null){
+//        return null;
+//     }
+//     else{
+//        return results[1] || 0;
+//     }
+// }
 
 flowplayer.conf = {
    ratio: 5/12,
@@ -32,18 +32,20 @@ flowplayer.conf = {
    splash: false,
    analytics: "UA-73749016-1"
 };
+
 var totalTime = 0;
 var countDown;
 var COST_PER_SECOND = 0.01;
 
 function updateDB() {
-  var dbRef = new Firebase('https://streamster.firebaseio.com/');
+  // var dbRef = new Firebase('https://streamster.firebaseio.com/');
 
  //bind listeners to all players on the page
   flowplayer(function(api, root) {
-    var videoName = document.getElementsByClassName("flowplayer")[0].getAttribute("title");
-    var child = {type: "video", name:videoName, views:1};
-    dbRef.push(child);
+    // var key = urlParam('key');
+    // var videoName = document.getElementsByClassName("flowplayer")[0].getAttribute("title");
+    // var child = {type: "video", name:videoName, views:1};
+    // dbRef.push(child);
 
     // var key = urlParam('key');
     // console.log(key);
@@ -73,9 +75,7 @@ function updateDB() {
     //       return current+1;
     //     });
     // });
-
-    
-
+    console.log("here");
     var endTime = 0;
     var startingTime;
     api.on("load", function() {
@@ -95,28 +95,28 @@ function updateDB() {
     });
  });
 
- function getValue(dbRef, videoName) {
-  dbRef.on("value", function(snapshot) {
-    results_list = "";
-    // results_list = document.getElementById("results-list");
-    var db = snapshot.val()
-    console.log(db);
-    for (var key in db) {
-      // if (!db.hasOwnProperty(key)) continue;
-      if (!db[key].hasOwnProperty('img-url')) {
-        if(db[key]['name'] === videoName) {
-          console.log(db[key]);
-          console.log(videoName);
-          console.log("found");
-          return db[key];
-        }
-      }
-    }
-  });
-  return null;
-}
+//  function getValue(dbRef, videoName) {
+//   dbRef.on("value", function(snapshot) {
+//     results_list = "";
+//     // results_list = document.getElementById("results-list");
+//     var db = snapshot.val()
+//     console.log(db);
+//     for (var key in db) {
+//       // if (!db.hasOwnProperty(key)) continue;
+//       if (!db[key].hasOwnProperty('img-url')) {
+//         if(db[key]['name'] === videoName) {
+//           console.log(db[key]);
+//           console.log(videoName);
+//           console.log("found");
+//           return db[key];
+//         }
+//       }
+//     }
+//   });
+//   return null;
+// }
 
- function getEndTime(displayStr, startingTime) {
+function getEndTime(displayStr, startingTime) {
   window.clearInterval(countDown);
   time = new Date().getTime() / 1000;
   console.info(displayStr, time);
