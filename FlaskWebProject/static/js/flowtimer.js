@@ -1,7 +1,4 @@
-
-var firstVar = loadScript("./urlparam.js", function() {
-  var myVar = loadScript("https://cdn.firebase.com/js/client/2.2.1/firebase.js", updateDB);
-})
+var myVar = loadScript("https://cdn.firebase.com/js/client/2.2.1/firebase.js", updateDB);
 
 function loadScript(url, updateDB) {
     // Adding the script tag to the head as suggested before
@@ -17,6 +14,16 @@ function loadScript(url, updateDB) {
 
     // Fire the loading
     head.appendChild(script);
+}
+
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    }
 }
 
 flowplayer.conf = {
@@ -36,7 +43,8 @@ function updateDB() {
   flowplayer(function(api, root) {
     var videoName = document.getElementsByClassName("flowplayer")[0].getAttribute("title");
     
-    var key = $.urlParam('key');
+    var key = urlParam('key');
+    console.log(key);
     var firstrun = true;
     var child = {type: "video", name:videoName, views:1};
     // dbRef.push(child);
