@@ -39,7 +39,6 @@ function updateDB() {
     var child = {type: "video", name:videoName, views:1};
     // dbRef.push(child);
     dbRef.on("value", function(snapshot) {
-        results_list = "";
         var db = snapshot.val();
         var videoKey;
         for (var key in db) {        
@@ -53,13 +52,9 @@ function updateDB() {
         var url = "https://streamster.firebaseio.com/" + videoKey + "/views";
         console.log(url);
         var thisView = new Firebase(url);
-        console.log(thisView);
         thisView.transaction(function(current) {
-          // return {type: "video", name: current["name"], views: current["views"] + 1};
           return current+1;
         });
-
-      }
     });
 
     
