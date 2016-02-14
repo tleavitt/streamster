@@ -64,13 +64,13 @@ import pypyodbc
 @app.route('/')
 def test_db():
     connection = pypyodbc.connect("Driver={SQL Server};Server=tcp:streamster.database.windows.net,1433;Uid=streamster@streamster;Pwd=Password1;Database=streamster")
-    # cursor = connection.cursor()
-    # SQLCommand = ("INSERT INTO videos "
-    #     "(id, timespent) "
-    #     "VALUES (?, ?)")
-    # Values = [3, 1234]
-    # cursror.execute(SQLCommand, Values)
-    # connection.commit()
+    cursor = connection.cursor()
+    SQLCommand = ("INSERT INTO videos "
+        "(id, timespent) "
+        "VALUES (?, ?)")
+    Values = [3, 1234]
+    cursror.execute(SQLCommand, Values)
+    connection.commit()
     connection.close()
     return render_template(
         'index.html',
