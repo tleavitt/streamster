@@ -1,20 +1,20 @@
-// var myVar = loadScript("https://cdn.firebase.com/js/client/2.2.1/firebase.js", updateDB);
+var myVar = loadScript("https://cdn.firebase.com/js/client/2.2.1/firebase.js", updateDB);
 
-// function loadScript(url, updateDB) {
-//     // Adding the script tag to the head as suggested before
-//     var head = document.getElementsByTagName('head')[0];
-//     var script = document.createElement('script');
-//     script.type = 'text/javascript';
-//     script.src = url;
+function loadScript(url, updateDB) {
+    // Adding the script tag to the head as suggested before
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
 
-//     // Then bind the event to the callback function.
-//     // There are several events for cross browser compatibility.
-//     script.onreadystatechange = updateDB;
-//     script.onload = updateDB;
+    // Then bind the event to the callback function.
+    // There are several events for cross browser compatibility.
+    script.onreadystatechange = updateDB;
+    script.onload = updateDB;
 
-//     // Fire the loading
-//     head.appendChild(script);
-// }
+    // Fire the loading
+    head.appendChild(script);
+}
 
 // function urlParam(name){
 //     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -37,7 +37,7 @@ var totalTime = 0;
 var countDown;
 var COST_PER_SECOND = 0.01;
 
-// function updateDB() {
+function updateDB() {
   // var dbRef = new Firebase('https://streamster.firebaseio.com/');
 
  //bind listeners to all players on the page
@@ -136,7 +136,7 @@ function getStartTime(displayStr, totalTime) {
   return time;
 }
 
-//}
+}
 
  // bind listeners to all players on the page
  // flowplayer(function(api, root) {
