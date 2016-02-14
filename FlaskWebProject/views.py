@@ -16,7 +16,7 @@ import pypyodbc
 DATABASE = '/tmp/streamster.db'
 
 def connect_db():
-    connection = pypyodbc.connect("Driver={SQL Server};Server=tcp:streamster.database.windows.net,1433;Uid=streamster@streamster;Pwd=Password1;Database=streamster")
+    # connection = pypyodbc.connect("Driver={SQL Server};Server=tcp:streamster.database.windows.net,1433;Uid=streamster@streamster;Pwd=Password1;Database=streamster")
     return connection
 
 
@@ -44,6 +44,10 @@ def view_video():
         year=datetime.now().year,
 	)
 
+@app.route('/videos')
+def view_videos():
+    return render_template("browse.html")
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -60,6 +64,7 @@ def home():
         year=datetime.now().year, 
         got_connection=got_connection
     )
+
 
 # @app.route('/')
 # def test_db():
