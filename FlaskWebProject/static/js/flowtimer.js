@@ -38,7 +38,7 @@ var countDown;
 var COST_PER_SECOND = 0.01;
 
 function updateDB() {
-  // var dbRef = new Firebase('https://streamster.firebaseio.com/');
+  var dbRef = new Firebase('https://streamster.firebaseio.com/');
 
  //bind listeners to all players on the page
   flowplayer(function(api, root) {
