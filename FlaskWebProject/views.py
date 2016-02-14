@@ -16,7 +16,7 @@ import pypyodbc
 DATABASE = '/tmp/streamster.db'
 
 def connect_db():
-    connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=streamster.database.windows.net;UID=sa;PWD=Password1;DATABASE=streamster")
+    connection = pypyodbc.connect("DRIVER={SQL Server};SERVER=tcp:streamster.database.windows.net,1433;UID=streamster@streamster;PWD=Password1;DATABASE=streamster")
     return connection
 
 
