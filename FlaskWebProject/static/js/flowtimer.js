@@ -28,10 +28,9 @@ flowplayer(function(api, root) {
   console.log(url);
   var thisView = new Firebase(url);
   thisView.transaction(function(current) {
-    document.getElementById("views-info").innerHTML = "This video has been viewed " + current + " times";
     return current+1;
   });
-  console.log("here");
+  document.getElementById("views-info").innerHTML = "This video has been viewed " + dbRef[key]["views"] + " times";
   var endTime = 0;
   var startingTime;
   api.on("load", function() {
