@@ -1,7 +1,7 @@
 <!doctype html>
 
 <title>
-      Streamster - Browse
+      Streamster - Profile
 </title>
 
 <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 <!-- firebase app -->  
 <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script src="../static/js/urlparam.js"></script>
 
 <body>
@@ -41,7 +41,12 @@
    <!-- End of navbar -->
 
    <!-- List of videos with thumbnails -->
-   <div id="results-list" class="results"></div>
+   <ul class='profile-info'> 
+      <li id="username"></li>
+      <li id="view-time"></li>
+      <li id="total-payed"></li>
+      <li id="hit-quota"></li>
+   </ul>
 
    <script>
      $(document).ready(function() {
@@ -50,19 +55,25 @@
          //    document.getElementById("database-contents").innerHtml = JSON.stringify(dataSnapshot.val());
          // });
          dbRef.on("value", function(snapshot) {
-            results_list = "";
+            var userid = $.urlParam("userid");
+            console.log(userid);
+            if (!userid) return;
             // results_list = document.getElementById("results-list");
             var db = snapshot.val()
             for (var key in db) {
                if (!db.hasOwnProperty(key)) continue;
-               if (db[key].hasOwnProperty('img-url') && db[key].hasOwnProperty('id')) {
-                  results_list += '<a href="/single_video.html?key=' + key + '">' +
-                     '<img src="' + db[key]['img-url'] + '" class="result-container img-thumbnail">' +
-                     '</a>';
+               if (db[key].hasOwnProperty('userid') && db[key].hasOwnProperty('timespent') &&
+                 db[key]['userid'] == userid) {
+                  console.log(db[key]);
+                  document.getElementById('username').innerHTML = "User: " + db[key]['username'];
+                  document.getElementById('view-time').innerHTML = "Total view time: " + db[key]['timespent'];
+                  var total_payed = parseFloat(db[key]['timespent']) / 60 * 0.008;
+                  document.getElementById('total-payed').innerHTML = "Total payed for month: " + total_payed.toFixed(2);
+                  var quotaStr = (total_payed > 7.0) ? "yes" : "no";
+                  // seconds * (seconds per minute) * (dollars per minute) > dollar cap for month
+                  document.getElementById('hit-quota').innerHTML = "Hit quota for month? " + quotaStr;
                }
            }
-           console.log(results_list);
-           document.getElementById('results-list').innerHTML = results_list;
 
          }, function (errorObject) {
            console.log("The read failed: " + errorObject.code);

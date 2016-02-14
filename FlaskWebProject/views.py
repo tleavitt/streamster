@@ -48,6 +48,10 @@ def view_video():
 def view_videos():
     return render_template("browse.html")
 
+@app.route('/profile')
+def view_profile():
+    return render_template("profile.html")
+
 @app.route('/')
 @app.route('/home')
 def home():
