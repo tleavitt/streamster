@@ -7,11 +7,10 @@ from flask import render_template
 from FlaskWebProject import app
 
 # all the imports
-import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 
-# import pypyodbc
+import pypyodbc
 
 # configuration
 DATABASE = '/tmp/streamster.db'
