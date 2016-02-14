@@ -35,27 +35,31 @@ function updateDB() {
     var videoName = document.getElementsByClassName("flowplayer")[0].getAttribute("title");
     
     
-// var firstrun = true
+    var firstrun = true;
     var child = {type: "video", name:videoName, views:1};
+    // dbRef.push(child);
     dbRef.on("value", function(snapshot) {
-      results_list = "";
-      var db = snapshot.val();
-      var videoKey;
-      for (var key in db) {        
-        if (!db[key].hasOwnProperty('img-url')) {
-          if(db[key]['name'] === videoName) {
-            videoKey = key;
-            document.getElementById("info").innerHTML = "" + db[key]['name'] + " - Views: " + db[key]['views'];
+        results_list = "";
+        var db = snapshot.val();
+        var videoKey;
+        for (var key in db) {        
+          if (!db[key].hasOwnProperty('img-url')) {
+            if(db[key]['name'] === videoName) {
+              videoKey = key;
+              document.getElementById("info").innerHTML = "" + db[key]['name'] + " - Views: " + db[key]['views'];
+            }
           }
         }
+        var url = "https://streamster.firebaseio.com/" + videoKey + "/views";
+        console.log(url);
+        var thisView = new Firebase(url);
+        console.log(thisView);
+        thisView.transaction(function(current) {
+          // return {type: "video", name: current["name"], views: current["views"] + 1};
+          return current+1;
+        });
+
       }
-      var url = 'https://streamster.firebaseio.com/' + videoKey;
-      console.log(url);
-      var thisView = new Firebase(url);
-      console.log(thisView.val);
-      thisView.transaction(function(current) {
-        return {type: "video", name: current["name"], views: current["views"] + 1};
-      });
     });
 
     
