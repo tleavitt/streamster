@@ -70,7 +70,7 @@ def test_db():
     # cursror.execute(SQLCommand)
     SQLCommand = 'SELECT * FROM videos'
     cursor.execute(SQLCommand)
-    # connection.commit()
+    results = cursor.fetchone()
     connection.close()
     return render_template(
         'index.html',
