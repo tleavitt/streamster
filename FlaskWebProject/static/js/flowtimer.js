@@ -32,14 +32,15 @@ flowplayer(function(api, root) {
   thisView.transaction(function(current) {
     return current+1;
   });
+  // Display views
+
   var ref = new Firebase(url);
-  // Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
     document.getElementById("views-info").innerHTML = "This video has been viewed " + snapshot.val() + " times";
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
-  // document.getElementById("views-info").innerHTML = "This video has been viewed " + dbRef[key]["views"] + " times";
+
   var endTime = 0;
   var startingTime;
   api.on("load", function() {
