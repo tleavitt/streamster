@@ -26,6 +26,7 @@ flowplayer(function(api, root) {
   console.log(key);
   var url = "https://streamster.firebaseio.com/" + key + "/views";
   console.log(url);
+  document.getElementById("views-info").innerHTML = "This video has been viewed " + dbRef[key]["views"] + " times";
   var thisView = new Firebase(url);
   thisView.transaction(function(current) {
     return current+1;
