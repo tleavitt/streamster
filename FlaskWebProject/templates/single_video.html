@@ -23,7 +23,8 @@
    <!-- include flowplayer -->
    <script src="../static/js/flowplayer.min.js"></script>
    <script src="../static/js/flowtimer.js"></script>
-   
+   <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+
 
 </head>
 
@@ -52,9 +53,13 @@
    </nav>
    <!-- End of navbar -->
 
+  <!--  <script>
+      var dbRef = new Firebase('https://streamster.firebaseio.com/');
+      dbRef.push({type: "video", name:"Jelly Fight", views:1});
+   </script> -->
    <!-- the player -->
 
-   <div class="flowplayer" data-analytics="UA-73749016-1" title="Stressed out" data-swf="../static/js/flowplayer.swf" data-ratio="0.4167">
+   <div class="flowplayer" data-analytics="UA-73749016-1" title="Jelly Fight" data-swf="../static/js/flowplayer.swf" data-ratio="0.4167">
       <video>
          <source type="video/mp4" src="http://streamster.huyenchip.com/videos/jellofight.mp4">
       </video>
@@ -63,6 +68,7 @@
    <!-- <p>To watch this video in full, you would need: </p> -->
    <div id="time-spent"></div>
    <div id="current-time-spent"></div>
+   <div id="info"></div>
    <!-- <p>bitcoin</p> -->
 
 </body>
